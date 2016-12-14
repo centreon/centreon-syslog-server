@@ -76,11 +76,11 @@
 		foreach ($logsTables as $logTable) {
 			if (strcmp($logTable, $maxDay) < 0) {
 				if (strcmp($logTable, "logs") > 0) {
-					$pear_syslogDB->query("DROP TABLE ".$logTable." ;");
+					$pear_syslogDB->query("DROP TABLE IF EXISTS ".$logTable." ;");
 					if (PEAR::isError($pear_syslogDB)) {
 						print "Mysql Error : ".$pear_syslogDB->getMessage()."\n";
 					}
-					print "DROP TABLE ".$logTable."\n";
+					print "DROP TABLE IF EXISTS ".$logTable."\n";
 				}
 			}
 		}
@@ -144,17 +144,17 @@
 	}
 	
 	/*
-	 * Drop table "all_logs"
+	 * DROP TABLE IF EXISTS "all_logs"
 	 */
 	function dropMergeLogs() {
 		global $pear_syslogDB, $syslogOpt;
 		
-		$pear_syslogDB->query("DROP TABLE `".$syslogOpt["syslog_db_name"]."`.`all_logs`;");
+		$pear_syslogDB->query("DROP TABLE IF EXISTS `".$syslogOpt["syslog_db_name"]."`.`all_logs`;");
 		if (PEAR::isError($pear_syslogDB)) {
 			print "Mysql Error : ".$pear_syslogDB->getMessage()."\n";;
 		}
 		else {
-			print "DROP TABLE all_logs\n";
+			print "DROP TABLE IF EXISTS all_logs\n";
 		}
 		
 		$pear_syslogDB->query("FLUSH TABLES");
@@ -274,17 +274,17 @@
 	}
 	
 	/*
-	 * Drop table "all_cache"
+	 * DROP TABLE IF EXISTS "all_cache"
 	 */
 	function dropMergeCache() {
 		global $pear_syslogDB, $syslogOpt;
 		
-		$pear_syslogDB->query("DROP TABLE `".$syslogOpt["syslog_db_name"]."`.`all_cache`;");
+		$pear_syslogDB->query("DROP TABLE IF EXISTS `".$syslogOpt["syslog_db_name"]."`.`all_cache`;");
 		if (PEAR::isError($pear_syslogDB)) {
 			print "Mysql Error : ".$pear_syslogDB->getMessage()."\n";;
 		}
 		else {
-			print "DROP TABLE all_cache\n";
+			print "DROP TABLE IF EXISTS all_cache\n";
 		}
 		
 		$pear_syslogDB->query("FLUSH TABLES");
@@ -306,11 +306,11 @@
 		foreach ($cacheTables as $cacheTable) {
 			if (strcmp($cacheTable, $maxDay) < 0) {
 				if (strcmp($cacheTable, "cache") > 0) {
-					$pear_syslogDB->query("DROP TABLE ".$cacheTable." ;");
+					$pear_syslogDB->query("DROP TABLE IF EXISTS ".$cacheTable." ;");
 					if (PEAR::isError($pear_syslogDB)) {
 						print "Mysql Error : ".$pear_syslogDB->getMessage()."\n";
 					}
-					print "DROP TABLE ".$cacheTable."\n";
+					print "DROP TABLE IF EXISTS ".$cacheTable."\n";
 				}
 			}
 		}
